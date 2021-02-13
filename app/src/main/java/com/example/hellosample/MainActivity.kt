@@ -13,19 +13,29 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val btClick = findViewById<Button>(R.id.btClick)
+        val btClear = findViewById<Button>(R.id.btClear)
         val listener = HelloListener()
         btClick.setOnClickListener(listener)
+        btClear.setOnClickListener(listener)
     }
 
     private inner class HelloListener : View.OnClickListener{
-        override fun onClick(view: View?) {
+        override fun onClick(view: View) {
             val input = findViewById<EditText>(R.id.etName)
             val output = findViewById<TextView>(R.id.textView)
-            val inputStr = input.text.toString()
-            if(inputStr == "")
-                output.text = "入力されてないよ"
-            else
-                output.text = inputStr + "さん、こんにちはにも！"
+            when(view.id) {
+                R.id.btClick-> {
+                    val inputStr = input.text.toString()
+                    if (inputStr == "")
+                        output.text = "入力されてないよ"
+                    else
+                        output.text = inputStr + "さん、こんにちはにも！"
+                }
+                R.id.btClear->{
+                    input.setText("")
+                    output.text = ""
+                }
+            }
         }
     }
 }
