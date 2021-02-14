@@ -25,11 +25,14 @@ class MainActivity : AppCompatActivity() {
             val output = findViewById<TextView>(R.id.textView)
             when(view.id) {
                 R.id.btClick-> {
-                    val inputStr = input.text.toString()
-                    if (inputStr == "")
-                        output.text = "入力されてないよ"
-                    else
-                        output.text = inputStr + "さん、こんにちはにも！"
+                    when(val inputStr = input.text.toString()) {
+                        ""-> {
+                            output.text = "入力されてないよ"
+                        }
+                        else-> {
+                            output.text = inputStr + "さん、こんにちはにも！"
+                        }
+                    }
                 }
                 R.id.btClear->{
                     input.setText("")
